@@ -102,6 +102,8 @@ if [ "$TERM" != "dumb" ]; then
     #alias vdir='ls --color=auto --format=long'
 fi
 
+xset r rate 250 45
+
 autoload -Uz bracketed-paste-magic
 zle -N bracketed-paste bracketed-paste-magic
 
@@ -112,8 +114,10 @@ alias pop=/home/hrishi/Videos/popcorn/Popcorn-Time
 export TERM=xterm-256color
 [ -n "$TMUX" ] && export TERM=screen-256color
 
+alias vim='nvim'
 alias mp3=~/.mp3.sh
 alias project='cd ~/Documents/pedsim/ecosystem/coppito0/'
+alias gitupdate='foo(){ git add -A; git commit -m "$1"; git push origin master}; foo'
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
