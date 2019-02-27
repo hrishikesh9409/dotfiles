@@ -110,7 +110,19 @@ fi
 tmux source-file ~/.tmux.conf
 alias kill_sessions_tmux="tmux kill-session -a"
 
+autoload -Uz bracketed-paste-magic
+zle -N bracketed-paste bracketed-paste-magic
+
+autoload -Uz url-quote-magic
+zle -N self-insert url-quote-magic
+
 xset r rate 250 45 # increase cursor speed
 alias mp3='youtube-dl -f bestaudio --extract-audio --audio-format mp3 $@'
 alias vim='nvim'
 alias gitupdate='foo(){ git add -A; git commit -m "$1"; git push origin master}; foo '
+alias project="cd ~/work/Pedsim_Thesis/coppito0/"
+alias thesis="cd ~/work/thesis"
+alias thesisimages="cd ~/work/images"
+alias pop=/home/hrishi/Videos/popcorn_installed/Popcorn-Time
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
