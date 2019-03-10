@@ -127,13 +127,6 @@ There are two things you can do about this warning:
                         '(:foreground "black" :background "orange"))
                     'mode-line)))
 
-;;for smoother scrolling 
-(require 'sublimity)
-(require 'sublimity-scroll)
-
-(sublimity-mode 1)
-
-
 ;;default path
 ;; (defun my-set-global-default-directory (new-default-directory)
 ;;   "Set my-global-default-directory to NEW-DEFAULT-DIRECTORY."
@@ -156,14 +149,16 @@ There are two things you can do about this warning:
 
 (setq compilation-scroll-output t)
 
-  ;; Close the compilation window if there was no error at all.
-  (setq compilation-exit-message-function
-        (lambda (status code msg)
-          ;; If M-x compile exists with a 0
-          (when (and (eq status 'exit) (zerop code))
-            ;; then bury the *compilation* buffer, so that C-x b doesn't go there
-  	  (bury-buffer "*compilation*")
-  	  ;; and return to whatever were looking at before
-  	  (replace-buffer-in-windows "*compilation*"))
-          ;; Always return the anticipated result of compilation-exit-message-function
-	  (cons msg code)))
+;;close compilation buffer when there are no errors present
+(setq compilation-window-height 8)
+(setq compilation-finish-function
+      (lambda (buf str)
+
+        (if (string-match "exited abnormally" str)
+
+            ;;there were errors
+            (message "compilation errors, press C-x ` to visit")
+
+          ;;no errors, make the compilation window go away in 0.5 seconds
+          (run-at-time 0.5 nil 'delete-windows-on buf)
+      (message "NO COMPILATION ERRORS! Thank you dear compiler..."))))
