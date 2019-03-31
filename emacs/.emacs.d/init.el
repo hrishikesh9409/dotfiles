@@ -222,30 +222,46 @@ There are two things you can do about this warning:
   (set-variable 'ycmd-server-command '("python" "/home/hrishi/.emacs.d/ycmd/ycmd"))
   (set-variable 'ycmd-global-config (expand-file-name "/home/hrishi/.emacs.d/ycmd/ycm_conf.py"))
 
-  ;(set-variable 'ycmd-extra-conf-whitelist '("~/Repos/*"))
+;; Autocomplete
+(use-package company
+  :defer 10
+  :diminish company-mode
+  :bind (:map company-active-map
+              ("M-j" . company-select-next)
+              ("M-k" . company-select-previous))
+  :preface
+  ;; enable yasnippet everywhere
+  (defvar company-mode/enable-yas t
+    "Enable yasnippet for all backends.")
+  (defun company-mode/backend-with-yas (backend)
+    (if (or 
+         (not company-mode/enable-yas) 
+         (and (listp backend) (member 'company-yasnippet backend)))
+        backend
+      (append (if (consp backend) backend (list backend))
+              '(:with company-yasnippet))))
+
+  :init (global-company-mode t)
+  :config
+  ;; no delay no autocomplete
+  (validate-setq
+   company-idle-delay 0
+   company-minimum-prefix-length 2
+   company-tooltip-limit 20)
+
+  (validate-setq company-backends 
+                 (mapcar #'company-mode/backend-with-yas company-backends)))
+
+
+;; Code-comprehension server
+(use-package ycmd
+  :ensure t
+  :init (add-hook 'c++-mode-hook #'ycmd-mode)
+  :config
+  (set-variable 'ycmd-server-command '("python" "/home/hrishi/.emacs.d/ycmd/ycmd"))
+  (set-variable 'ycmd-global-config (expand-file-name "/home/hrishi/.emacs.d/ycmd/ycm_conf.py"))
 
   (use-package company-ycmd
     :ensure t
     :init (company-ycmd-setup)
     :config (add-to-list 'company-backends (company-mode/backend-with-yas 'company-ycmd))))
-
-(use-package company
-  :ensure t
-  :diminish ""
-  :commands global-company-mode
-  :custom
-  (company-idle-delay 0.2)
-  (company-selection-wrap-around t)
-  (company-minimum-prefix-length 2)
-  (company-require-match nil)
-  (company-dabbrev-ignore-case nil)
-  (company-dabbrev-downcase nil)
-  (company-show-numbers t)
-  :config
-  (global-company-mode)
-  (use-package company-statistics
-    :ensure t
-    :config
-    (company-statistics-mode))
-  (bind-keys :map company-active-map
-             ("TAB" . company-complete)))
