@@ -8,7 +8,8 @@
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="plain"
+ZSH_THEME="honukai"
+
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -24,7 +25,7 @@ ZSH_THEME="plain"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# DISABLE_AUTO_UPDATnE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -62,9 +63,7 @@ ZSH_THEME="plain"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -85,9 +84,6 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -97,32 +93,13 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-force_color_prompt=yes
-export TERM='xterm-256color'
-export EMACS="*term*"
-export LC_ALL=en_IN.UTF-8
-export LANG=en_IN.UTF-8
-#------------------------------------------------------------------------------------
-# to use tmux
-if command -v tmux>/dev/null; then
-	[[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
-fi
-tmux source-file ~/.tmux.conf
-alias kill_sessions_tmux="tmux kill-session -a"
-
-autoload -Uz bracketed-paste-magic
-zle -N bracketed-paste bracketed-paste-magic
-
-autoload -Uz url-quote-magic
-zle -N self-insert url-quote-magic
-
+# speed up cursor movement
 xset r rate 250 45 # increase cursor speed
-alias mp3='youtube-dl -f bestaudio --extract-audio --audio-format mp3 $@'
-alias vim='nvim'
-alias gitupdate='foo(){ git add -A; git commit -m "$1"; git push origin master}; foo '
-alias project="cd ~/work/Pedsim_Thesis/coppito0/"
-alias thesis="cd ~/work/thesis"
-alias thesisimages="cd ~/work/images"
-alias pop=/home/hrishi/Videos/popcorn_installed/Popcorn-Time
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias mp3='youtube-dl -f bestaudio --extract-audio --audio-format mp3'
+alias pop=/home/hrishi/Videos/popcorn_times/Popcorn-Time
+alias vim="nvim"
+alias mt="python2 ~/dotfiles/i3/mount.py"
+alias umt="python2 ~/dotfiles/i3/umount.py"
+alias gitupdate='foo(){ git add -A; git commit -m "$1"; git push origin master}; foo '
