@@ -105,3 +105,4 @@ alias umt="python2 ~/dotfiles/i3/umount.py"
 alias gitupdate='foo(){ git add -A; git commit -m "$1"; git push origin master}; foo '
 alias brightness=/sys/class/backlight/intel_backlight/
 alias telegram=~/Documents/Telegram/Telegram
+alias malware=~/work/Machine_Learning_Malware

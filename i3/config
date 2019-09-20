@@ -35,6 +35,8 @@ bindsym $mod+Return exec i3-sensible-terminal
 #polkit for authentication#polkit for authentication#polkit for authentication
 exec --no-startup-id lxpolkit
 
+exec --no-startup-id redshift -O 5000
+
 # You can also use any non-zero value if you'd like to have a border
 for_window [class=".*"] border pixel 0
 
