@@ -95,6 +95,7 @@ zle -N recordpath
 bindkey '^b' recordpath
 
 
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -124,11 +125,6 @@ alias mp3=~/.mp3.sh
 alias python='python3'
 alias tele=~/Documents/Telegram/Telegram
 #alias emacs='emacs -nw'
-alias emacs='foo(){ emacs "$1" &!;exit;}; foo '
-alias zathura='foo(){ zathura "$1" &!}; foo '
+# alias myedit='emacsclient --alternate-editor="" --no-wait $*'
+# alias emacs='foo(){ myedit -c "$1"&!}; foo '
 
-# git related
-alias gitupdate='foo(){ git add -A; git commit -m "$1"; git push origin master}; foo '
-alias git_origin_head='foo(){ git fetch origin; git reset --hard master}; foo '
-alias git_show='foo(){ python3 ~/config_files/system_files/gitshow.py "$1"}; foo '
-alias git_log="git log --graph --pretty=form %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"

@@ -1,21 +1,31 @@
 #define size 13
-URxvt*font: xft:Inconsolata:pixelsize=size:antialias=true
-URxvt*boldFont: xft:Inconsolata:bold:pixelsize=size:antialias=true
-!!URxvt*imFont: xft:Inconsolata\ for\ Powerline:pixelsize=17:antialias=true
-URxvt*italicFont: xft:Inconsolata:italic:pixelsize=size:antialias=true
-URxvt*boldItalicFont: xft:Inconsolata:bold:italic:pixelsize=size:antialias=true
-!URxvt.font:xft:Monospace:pixelsize=size
-!URxvt.boldfont:xft:Monospace-Bold:pixelsize=size
+#define myfont UbuntuMono
+!#define myfont Inconsolata
+
+URxvt*font: xft:myfont:pixelsize=size:antialias=true
+URxvt*boldFont: xft:myfont:bold:pixelsize=size:antialias=true:style=Bold
+URxvt*imFont: xft:myfont:pixelsize=17:antialias=true
+URxvt*italicFont: xft:myfont:italic:pixelsize=size:antialias=true:style=Oblique
+URxvt*boldItalicFont: xft:myfont:bold:italic:pixelsize=size:antialias=true:style=Bold Oblique
+
 
 URxvt.scrollBar: false
 URxvt*cursorColor: #00FF00
-URxvt*borderLess: true
+URxvt*borderLess: false
 URxvt*internalBorder: 0
 URxvt*externalBorder: 0
 URxvt.iso14755: false
 URxvt.iso14755_52: false
+!URxvt.transparent: true
+!URxvt.shading: 20
+
+URxvt.keysym.Control-Up:     \033[1;5A
+URxvt.keysym.Control-Down:   \033[1;5B
+URxvt.keysym.Control-Left:   \033[1;5D
+URxvt.keysym.Control-Right:  \033[1;5C
 
 URxvt*urlLauncher: /usr/bin/firefox
+URxvt.iconFile: /usr/share/icons/Humanity/apps/128/gnome-terminal.svg
 
 ! Fullscreen switch
 URxvt.perl-ext-common: fullscreen
@@ -23,8 +33,10 @@ URxvt.keysym.F11: perl:fullscreen:switch
 
 ! gruvbox theme ----------------------------------------------------
 *hard contrast: *background: #1d2021
-*background: #282828
-! soft contrast: *background: #32302f
+!*background: #282828
+*background: #000000
+!*background: #171819
+!soft contrast: *background: #32302f
 *foreground: #ebdbb2
 ! Black + DarkGrey
 *color0:  #282828
@@ -108,4 +120,4 @@ URxvt.keysym.F11: perl:fullscreen:switch
 !!! white dark/light
 !*color7:                S_base2
 !*color15: S_base3
-
+! -----------------------------------------------------------------

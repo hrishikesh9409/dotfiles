@@ -229,4 +229,25 @@ There are two things you can do about this warning:
   (validate-setq company-backends 
                  (mapcar #'company-mode/backend-with-yas company-backends)))
 
+
+;; integrate clipboard with x11
+;; (add-to-list 'load-path "~/.emacs.d/elpa/xclip-1.10/")
+;; (require 'xclip)
+;; (xclip-mode 1)
+
+;;(global-set-key "\C-x C-y" (shell-command-on-region (point) (mark) "xclip"))
+
+(defun yank-to-clipboard ()
+  "Use ANSI OSC 52 escape sequence to attempt clipboard copy"
+  (interactive)
+  (send-string-to-terminal
+   (format "\033]52;c;%s\a"
+	   (base64-encode-string
+	    (encode-coding-string
+	     (substring-no-properties
+	      (nth 0 kill-ring)) 'utf-8) t))))
+
+;;(global-set-key "\M-S-w" (shell-command-on-region (point) (mark) "xclip"))
+;;(global-set-key (kbd "M-S-w") 'yank-to-clipboard)
+
 (setq x-select-enable-clipboard t)
