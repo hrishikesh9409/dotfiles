@@ -125,6 +125,7 @@ alias python='python3'
 alias tele=~/Documents/Telegram/Telegram
 #alias emacs='emacs -nw'
 alias emacs='foo(){ emacs "$1" &!;exit;}; foo '
+alias emacsn='foo(){ emacs "$1" &!}; foo '
 alias zathura='foo(){ zathura "$1" &!}; foo '
 
 # git related
@@ -132,3 +133,5 @@ alias gitupdate='foo(){ git add -A; git commit -m "$1"; git push origin master};
 alias git_origin_head='foo(){ git fetch origin; git reset --hard master}; foo '
 alias git_show='foo(){ python3 ~/config_files/system_files/gitshow.py "$1"}; foo '
 alias git_log="git log --graph --pretty=form %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias quick_code="cp $HOME/dotfiles/cpp/quick_code/build.sh . && cp $HOME/dotfiles/cpp/quick_code/main.cpp ."
+alias quick_note="cp $HOME/dotfiles/latex/Makefile . && cp $HOME/dotfiles/latex/main.tex ."

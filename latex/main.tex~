@@ -1,0 +1,11 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper, portrait, margin=0.5in]{geometry}
+
+\begin{document}
+\title{\LARGE \textit{\textbf{}}}
+\author{\textbf{\textit{by Hrishikesh Narayanan Kutty}}}
+%\date{\today}
+\maketitle
+\Large
+
+\end{document}
